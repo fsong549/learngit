@@ -1,0 +1,6 @@
+
+adb push %Cur_dir%libfpsensor_fingerprint.default.so /system/vendor/lib64/hw/fingerprint.chipone7236.so
+adb push %Cur_dir%libfpsensor_module.default.so /system/vendor/lib64/hw/fpsensor_module.default.so
+
+adb push %Cur_dir%libfpsensor_fingerprint.default.so /system/lib64/hw/fingerprint.chipone7236.so
+adb push %Cur_dir%libfpsensor_module.default.so /system/lib64/hw/fpsensor_module.default.so
