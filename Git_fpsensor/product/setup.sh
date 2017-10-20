@@ -17,8 +17,8 @@ export COMP_PATH_ROOT=$(dirname $(readlink -f ${BASH_SOURCE[0]}))
 export TOOLCHAIN=${TOOLCHAIN:-"GNU"}
 
 # Mode used for building samples
-#export MODE=${MODE:-"Release"}
-export MODE=${MODE:-"Debug"}
+export MODE=${MODE:-"Release"}
+#export MODE=${MODE:-"Debug"}
 
 #zkli do not remove the next line: a stub for publish
 export TEE=${TEE:-"dummytee"}

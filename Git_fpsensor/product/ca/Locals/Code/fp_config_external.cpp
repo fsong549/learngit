@@ -25,9 +25,9 @@ const int32_t gKeys[] =
 
 gesture_config_t gesture_config =
 {
-    .enable_direction = NAV_ENABLE,
-    .enable_long_press = NAV_ENABLE,
-    .enable_double_click = NAV_ENABLE,
+    .enable_direction = NAV_DISABLE,
+    .enable_long_press = NAV_DISABLE,
+    .enable_double_click = NAV_DISABLE,
     .long_press_time_threshold = 500,
     .double_click_time_threshold = 300,
     .enable_touch = NAV_ENABLE ,
@@ -52,7 +52,7 @@ extern "C" {
         {"default_config_item",                                         0},        //1lzk do not modify this line
 //----------------------------fp_config----------------------------------------------------
         {FP_CONFIG_REPORT_DETAIL_MSG,                                   0},         //(0,1) do not use this feature in 6.0 platform, enable on 5.X
-        {FP_CONFIG_FEATURE_NAVIGATOR,                                   0},         //(0,1) according to user requirements
+        {FP_CONFIG_FEATURE_NAVIGATOR,                                   1},         //(0,1) according to user requirements
         //caution: modify definition of FINGER_MAX_COUNT in TA to change the enroll finger number ,do not modify this line
         {FP_CONFIG_MAX_ENROLL_FINGER_SLOT_NUMBER,        FINGER_MAX_COUNT},         //[5~20] how many finger can be enrolled in the database
         {FP_CONFIG_FEATURE_AUTH_FIRST_ENTER_NO_WAIT_UP,                 1},         //(0,1) on first time enter authenticate funcation, do not wait finger up
@@ -172,7 +172,7 @@ fp_event_callback_t customer_callback =
     {0},
 };
 
-#define FINGERPRINT_HAL_MODULE_ID  "fpsensor_fingerprint"
+#define FINGERPRINT_HAL_MODULE_ID  "fingerprint"
 static __attribute__((constructor(101))) void init_function_for_fae(void)
 {
     LOGD(FPTAG"force set hal module id to %s", FINGERPRINT_HAL_MODULE_ID);
