@@ -1,0 +1,18 @@
+    case FPSENSOR_IOC_ENABLE_IRQ:
+        fpsensor_debug(INFO_LOG, "%s: chip ENable IRQ command\n", __func__);
+        fpsensor_enable_irq(fpsensor_dev);
+        break;
+
+    case FPSENSOR_IOC_DISABLE_IRQ:
+        fpsensor_debug(INFO_LOG, "%s: chip disable IRQ command\n", __func__);
+        fpsensor_disable_irq(fpsensor_dev);
+        break;
+    case FPSENSOR_IOC_GET_INT_VAL:
+        val = __gpio_get_value(GPIO_PIN_IRQ);
+        if (copy_to_user((void __user *)arg, (void *)&val, sizeof(unsigned int))) {
+            fpsensor_debug(ERR_LOG, "Failed to copy data to user\n");
+            retval = -EFAULT;
+            break;
+        }
+        retval = 0;
+        break;
