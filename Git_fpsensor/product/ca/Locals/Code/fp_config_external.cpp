@@ -28,8 +28,8 @@ gesture_config_t gesture_config =
     .enable_direction = NAV_DISABLE,
     .enable_long_press = NAV_DISABLE,
     .enable_double_click = NAV_DISABLE,
-    .long_press_time_threshold = 500,
-    .double_click_time_threshold = 300,
+    .long_press_time_threshold = 600,
+    .double_click_time_threshold = 500,
     .enable_touch = NAV_ENABLE ,
     .up_threshold    = 2,
     .down_threshold  = 2,
@@ -71,7 +71,7 @@ extern "C" {
         {FP_CONFIG_STORE_CAPTURED_IMG,                                  0},         //(0,1) test purpose control whether to store the captured image , the default name is /sdcard/fpimg.bmp
         {FP_CONFIG_FEATURE_ENHANCEMENT_BMP_BEFORE_SAVE,                 0},         //(0,1) enable or disable enhancement bmp before save to file, contact "tczhai" for more info
         {FP_CONFIG_FEATURE_ENABLE_SYNC_XML,                             0},         //(0,1) enable or disable, when enabled, can sync templates in db and xml in framework. need selinux permission
-        {FP_CONFIG_FEATURE_ENABLE_EXT_SVC2,                             0},         //(0,1) enable or disable ext_svc2 service
+        {FP_CONFIG_FEATURE_ENABLE_EXT_SVC2,                             1,         //(0,1) enable or disable ext_svc2 service
         {FP_CONFIG_VALUE_ENROLL_IMG_QUALITY_BAD_RPT_CODE,               2},         //(!= 0) when enroll image quality too bad, report which code to UI, should not set to 0
 //---------------------------fae-----------------------------------------------------------
         {FP_CONFIG_VALUE_FAE_VERSION_SUB,                 FAE_VERSION_SUB},         //sub  version code for FAE
@@ -139,11 +139,11 @@ const char *customer_get_dummytee_low_level_hal_name(void)
     extern bool is_64bit_system(void);
     if (is_64bit_system())
     {
-        return "/system/lib64/hw/fpsensor_module.default.so";
+        return "/system/vendor/lib64/hw/fpsensor_module.default.so";
     }
     else
     {
-        return "/system/lib/hw/fpsensor_module.default.so";
+        return "/system/vendor/lib/hw/fpsensor_module.default.so";
     }
     return NULL;
 }
