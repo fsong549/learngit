@@ -1,0 +1,2 @@
+# Add for fpsensor fingerprint device
+type fpsensor_fp_device, dev_type;

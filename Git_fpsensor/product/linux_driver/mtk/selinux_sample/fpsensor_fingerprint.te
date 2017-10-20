@@ -1,0 +1,26 @@
+#add for fpsensor fingerprint
+type fpsensor_fp_device, dev_type;
+type fpsensor_test_service,service_manager_type;
+type fpsensor_test_file, file_type, data_file_type;
+type fp_ext_svc2_service, service_manager_type;
+
+allow fingerprintd fpsensor_fp_device:chr_file {open read write ioctl};
+allow fingerprintd fuse:dir {search};
+allow fingerprintd mnt_user_file:dir {search};
+allow fingerprintd mnt_user_file:lnk_file {read};
+allow fingerprintd storage_file:lnk_file {read};
+allow fingerprintd uhid_device:chr_file {open ioctl write read};
+allow system_app fingerprintd:unix_stream_socket {connectto read write};
+allow system_app fingerprintd:fd {use};
+allow system_app fingerprint_service:service_manager {add find};
+
+allow system_app fpsensor_test_file:sock_file {create setattr unlink read write};
+allow system_app fpsensor_test_file:dir {search};
+allow fingerprintd fpsensor_test_file:dir {search add_name remove_name create open read write};
+allow fingerprintd fpsensor_test_file:sock_file {create setattr unlink};
+allow system_app fpsensor_test_service:service_manager { add find };
+allow untrusted_app fpsensor_test_service:service_manager { find };
+
+# for new extension apk
+allow fingerprintd  fp_ext_svc2_service:service_manager {add};
+allow untrusted_app fp_ext_svc2_service:service_manager {find};

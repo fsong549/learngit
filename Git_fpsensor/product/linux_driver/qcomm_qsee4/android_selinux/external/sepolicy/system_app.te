@@ -1,0 +1,7 @@
+#add for fpsensor fingerprint socket connection
+allow system_app fingerprintd:unix_stream_socket {connectto read write};
+allow system_app fpsensor_data_file:sock_file { write };
+allow system_app fpsensor_data_file:dir { search };
+allow system_app fingerprintd:fd {use}; 
+allow system_app fingerprint_service:service_manager {add};
+allow system_app fpsensor_test_service:service_manager {add};

@@ -1,0 +1,53 @@
+1、进入可执行文件TASign所在目录，输入指令有两条：
+	(a)帮助指令 ./TASign help
+	(b)执行命令 ./TASign Algorithm -i TAFileName -k KeyFileName -o outFileName 
+	
+
+2、帮助指令  ./TASign help，执行后显示如下：
+    命令：./TASign Algorithm -i TAFileName -k KeyFileName -o outFileName -d
+    输入项设置：
+	Algorithm ：执行签名运算的算法标记（一般设为RSA_SHA1），可设为：
+			RSA_SHA1
+			RSA_SHA224
+			RSA_SHA256
+			RSA_SHA384
+			RSA_SHA512
+	TAFileName ：待签名的TA文件
+	KeyFileName ：签名时使用的密钥文件，文件数据格式为bits:modulus:prikey
+		(bits为RSA密钥模的位数,modulus为RSA密钥对的模,prikey为RSA私钥)
+    输出项设置：
+	outFileName： 输出二进制文件（内容为Tag||TAlen||Siglen||TA||Sig）
+    可选项：
+	-d	显示中间结果，若不需要查看中间结果，则可省略掉-d。
+		否则，打印如下信息：
+			hash：TA的hash值
+			Tag：标记
+			TAlen：TA的字节长度
+			siglen：签名值的字节长度
+			Sig：签名值
+			RSA_modulus：RSA密钥对中的模
+			RSA_prikey：RSA私钥
+3、执行命令：
+eg: 若执行 ./TASign RSA_SHA1 -i example.ta -k key.txt -o result.ta
+     指运用RSA_SHA1算法，对当前目录下的example.ta文件签名，
+       结果存放在当前目录下result.ta中, 其中密钥为当前目录下的key.txt
+若想查看中间结果，则可直接执行指令
+	./TASign RSA_SHA1 -i example.ta -k key.txt -o result.ta -d
+
+/**************************************ta签名**********************************************\
+./TASign RSA_SHA1 -i source/7b30b820-a9ea-11e5-b1780002a5d5c51b.ta -k key.txt -o target/7b30b820-a9ea-11e5-b1780002a5d5c51b.ta
+./TASign RSA_SHA1 -i source/08010203-0000-0000-0000000000000000.ta -k key.txt -o target/08010203-0000-0000-0000000000000000.ta
+8aaaf200-2450-11e4-abe20002a5d5c51d
+
+./TASign RSA_SHA1 -i source/8aaaf200-2450-11e4-abe20002a5d5c51d.ta -k key.txt -o target/8aaaf200-2450-11e4-abe20002a5d5c51d.ta
+
+
+/**************************************alipay 秘钥生成***************************************\
+./KeyStore FileType -i key.n -k key.txt -o 6B65792E6E -d > key.n_6B65792E6E.log
+./KeyStore FileType -i key.d -k key.txt -o 6B65792E64 -d > key.d_6B65792E64.log
+./KeyStore FileType -i key.e -k key.txt -o 6B65792E65 -d > key.e_6B65792E65.log
+
+
+cp 8aaaf200-2450-11e4-abe20002a5d5c51d.ta  ../TASIGN_TOOL_modify/source/
+
+ ./TASign RSA_SHA1 -i source/8aaaf200-2450-11e4-abe20002a5d5c51d.ta -k key.txt -o target/8aaaf200-2450-11e4-abe20002a5d5c51d.ta
