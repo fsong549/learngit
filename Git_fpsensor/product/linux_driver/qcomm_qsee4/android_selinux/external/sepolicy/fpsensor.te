@@ -1,0 +1,22 @@
+# tee device
+allow fingerprintd tee_device:chr_file { open read write ioctl };
+
+# firmware file
+allow fingerprintd firmware_file:dir { search };
+allow fingerprintd firmware_file:file { open read getattr };
+
+#for leadcore fingerprint
+#1. allow fingerprintd to access /dev/fpsensor
+allow fingerprintd fpsensor_fp_device:chr_file {open read write ioctl};
+#2. allow fpsensor hal to access /data/system/fpsensor(/.*)?
+allow fingerprintd fpsensor_data_file:sock_file {create setattr unlink};
+allow fingerprintd fpsensor_data_file:dir {write read add_name remove_name search};
+binder_call(fingerprintd, untrusted_app);
+binder_call(untrusted_app, fingerprintd);
+allow fingerprintd system_data_file:dir {write read add_name remove_name};
+allow fingerprintd system_data_file:sock_file {create setattr unlink};
+allow fingerprintd uhid_device:chr_file {open read write ioctl};
+allow fingerprintd input_device:chr_file { read open ioctl };
+allow fingerprintd input_device:dir { read open search };
+allow fingerprintd  fp_ext_svc2_service:service_manager {add };
+allow untrusted_app fp_ext_svc2_service:service_manager {find};

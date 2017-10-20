@@ -1,0 +1,3 @@
+#add by fpsensor fingerprint
+com.fpsensor.fpSensorExtension u:object_r:fpsensor_test_service:s0
+com.fpsensor.ext.IFpExtSvc2    u:object_r:fp_ext_svc2_service:s0

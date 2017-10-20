@@ -1,0 +1,4 @@
+# Add for fpsensor fingerprint device
+type fpsensor_test_service,service_manager_type;
+type fp_ext_svc2_service, service_manager_type;
+

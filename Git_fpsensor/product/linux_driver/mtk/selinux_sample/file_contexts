@@ -1,0 +1,2 @@
+/dev/fpsensor           u:object_r:fpsensor_fp_device:s0
+/data/fpsensor(/.*)? 	u:object_r:fpsensor_test_file:s0
