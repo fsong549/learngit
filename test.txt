@@ -1,0 +1,18 @@
+
+
+git config  --global  user.name "XXX"
+git config  --global user.email "XXX@XXX.com"
+git init
+git add XXX.txt
+git commit -m "commit log"
+git status
+git diff XXX.txt
+git log --pretty=oneline
+git reset --hard HEAD^
+git reset --hard HEAD^^
+git reset --hard HEAD~100
+git reflog
+git reset --hard 6fcfc89
+git checkout -- XXX.txt
+ssh-keygen  -t rsa –C “youremail@example.com”
+id_rsa是私钥，不能泄露；id_rsa.pub是公钥，可以告诉任何人
